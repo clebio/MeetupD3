@@ -1,0 +1,7 @@
+Django==1.4.2
+argparse==1.2.1
+distribute==0.6.24
+heroku==0.1.2
+python-dateutil==1.5
+requests==0.14.2
+wsgiref==0.1.2
