@@ -1,0 +1,52 @@
+{% load staticfiles %}
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <title>{% block title %}Meetup D3 Visualizer{% endblock %}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <script src="{% static "js/modernizr-2.5.3.min.js" %}"></script>
+  <!-- JavaScript at the bottom for fast page loading -->
+  <link rel="stylesheet" href="{% static "css/base.css" %}" />
+  <link rel="stylesheet" href="{% static "css/skeleton.css" %}" />
+  <link rel="stylesheet" href="{% static "css/layout.css" %}" />
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "type/apparatus.css" %}" media="all" />
+  <link rel="stylesheet" type="text/css" href="{% static "type/bebas.css" %}" media="all" />
+  <link rel="stylesheet" href="{% static "css/colors.css" %}" />
+</head>
+<body>
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <div id="container" class="container">
+  <div id="header" class="sixteen columns">
+    <header>
+    {% block header %}
+	<h1>{% block pageName %}{{ title }}{% endblock %}</h1>
+    {% endblock %}
+    </header>
+  </div>
+  
+  <div id="main">
+    {% block content %}
+      stub
+    {% endblock %}
+  </div>
+
+  <div id="footer" class="sixteen columns">
+    <footer>
+    {% block footer %}
+      <div id="copyright">All rights reserved, Caleb Hyde, 2012</div>
+    {% endblock %}
+    </footer>
+  </div>
+</body>
+</html>
