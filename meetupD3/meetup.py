@@ -41,7 +41,6 @@ def getEventAttendees(eventId):
             for p in person:
                 pers[p] =  person[p]
             attendees.append(pers)
-    json.dump({'nodes': attendees,}, open(_basepath + 'json/eventAttendees' + eventId + '.json','w'))
     return attendees
 
 def getMembers(group_id):
@@ -64,7 +63,6 @@ def getMembers(group_id):
                 'topicCount': len(person['topics']), # list: { 'id', 'name', 'urlkey'}
                 'topics': topics,
                 })
-    json.dump(members, open(_basepath + 'json/groupMembers' + group_id + '.json','w'))
     return members
 
 def getEvents(group_id):
@@ -79,7 +77,6 @@ def getEvents(group_id):
                     p: e[p],
                 })
          events.append(event)
-    json.dump(events, open(_basepath + 'json/groupEvents' + group_id + '.json','w'))
     return events
 
 def getTopic(topicName):
