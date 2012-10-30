@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-# admin.autodiscover()
+admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^members/(\d+)/$', 'app1.views.members'),

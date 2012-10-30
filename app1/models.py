@@ -2,7 +2,7 @@ from django.db import models
 
 class Member(models.Model):
     name = models.CharField(max_length=128)
-    phto_url = models.URLField()
+    photo_url = models.URLField()
     bio =  models.TextField()
     lat = models.FloatField()
     lon = models.FloatField()
