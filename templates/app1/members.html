@@ -4,7 +4,7 @@
     <h2>Members</h2>
     <ul>
         {% for mem in members %}
-            <li><a href="{{ mem.photo_url.thumb_link }}">{{ mem.name }}</a>: {{ mem.bio }}</li>
+            <li><a href="/profiles/{{ mem.id }}">{{ mem.name }}</a>: {{ mem.bio }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

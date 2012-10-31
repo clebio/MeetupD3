@@ -17,3 +17,7 @@ def profiles(request, member_id):
 def members(request, group_id):
     mems = meetup.getMembers(group_id)
     return render_to_response('app1/members.html', {'members': mems, 'title': 'Meetup Members'})
+
+def events(request, group_id):
+    eve = meetup.getEvents(group_id)
+    return render_to_response('app1/events.html', {'events': eve, 'title': 'Meetup Events for group ' + group_id})
