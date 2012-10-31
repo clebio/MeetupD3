@@ -40,7 +40,7 @@ def getEventAttendees(eventId):
             pers = {}
             for p in person:
                 pers[p] =  person[p]
-            attendees.append(pers)
+        attendees.append(pers)
     return attendees
 
 def getMembers(group_id):
@@ -53,7 +53,7 @@ def getMembers(group_id):
             topics.append({'name': t['name']})
         members.append({
                 "name": person['name'],
-                "photo_url": person['photo_url'],
+                "photo_url": person['photo_url'], # need to handle 'thumb_link' versus 'photo_link' in /2/members
                 'bio': person['bio'],
                 'lat': person['lat'],
                 'lon': person['lon'],
@@ -65,21 +65,26 @@ def getMembers(group_id):
                 })
     return members
 
-def getEvents(group_id):
-    _params['group_id'] = group_id
+def getProfiles(member_id):
+    _params['member_id'] = member_id
 #    _params['after'] = '3m'
-    result = _get_data('events', _params)
-    events = []
-    for e in result:
-         event = []
-         for p in e:
-            event.append({
-                    p: e[p],
-                })
-         events.append(event)
-    return events
-
+    result = _get_data('2/profiles', _params)
+    pros = []
+    for m in result:
+        profiles = {}
+        for n in m:
+            if type(m[n]) == dict:
+                if len(m[n]):
+                    profiles[n] = m[n]
+                else:
+                    profiles[n] = n 
+            else:
+                profiles[n] = m[n]
+        pros.append(profiles)
+    return pros
+            
 def getTopic(topicName):
     _params['name'] = topicName
     result = _get_data('topics', _params)
     return result[0]
+

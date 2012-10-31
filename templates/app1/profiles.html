@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Profiles</h2>
+    <ul>
+        {% for p in profiles %}
+            <li><a href="{{ p.photo.thumb_link }}">{{ p.name }}</a>: {{ p.bio }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -7,9 +7,13 @@ import datetime
 
 def home(request):
     now = datetime.datetime.now()
-    html = "<html><body><h1>Meetup D3 Visualizer</h1><br /><p>The time now is %s.<p></body></html>" % now
-    return HttpResponse(html)
+    html = "<p>The time now is %s.<p>" % now
+    return render_to_response('base.html', {'title': 'Homepage', 'content': html})
+
+def profiles(request, member_id):
+    pros = meetup.getProfiles(member_id)
+    return render_to_response('app1/profiles.html', {'profiles': pros, 'title': 'Meetup Profiles for ' + member_id})
 
 def members(request, group_id):
     mems = meetup.getMembers(group_id)
-    return render_to_response('app1/members.html', {'members': mems})
+    return render_to_response('app1/members.html', {'members': mems, 'title': 'Meetup Members'})
