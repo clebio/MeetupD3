@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Groups</h2>
+    <ul>
+        {% for g in groups %}
+            <li><a href="/events/{{ g.id }}">{{ g.name }}</a>: {{ g.description|striptags }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

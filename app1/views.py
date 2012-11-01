@@ -26,3 +26,6 @@ def rsvps(request, event_id):
     rsvps = meetup.getRsvps(event_id)
     return render_to_response('app1/rsvps.html', {'rsvps': rsvps, 'title': 'RSVPs for event ' + event_id})
 
+def groups(request, search_terms):
+    groups = meetup.getGroups(search_terms)
+    return render_to_response('app1/groups.html', {'groups': groups, 'title': 'Groups related to the term ' + search_terms}) 

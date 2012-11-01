@@ -51,7 +51,7 @@ def getProfiles(member_id):
 #    _params['after'] = '3m'
     return _get_data('2/profiles', _params)
 
-def getTopic(topicName):
-    _params['name'] = topicName
-    result = _get_data('topics', _params)
-    return result[0]
+def getGroups(searchTerms):
+    _params['topic'] = searchTerms
+    return _get_data('2/groups', _params)
+    
