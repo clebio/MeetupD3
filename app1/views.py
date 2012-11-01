@@ -21,3 +21,8 @@ def members(request, group_id):
 def events(request, group_id):
     eve = meetup.getEvents(group_id)
     return render_to_response('app1/events.html', {'events': eve, 'title': 'Meetup Events for group ' + group_id})
+
+def rsvps(request, event_id):
+    rsvps = meetup.getRsvps(event_id)
+    return render_to_response('app1/rsvps.html', {'rsvps': rsvps, 'title': 'RSVPs for event ' + event_id})
+

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Event Attendees</h2>
+    <ul>
+        {% for r in rsvps %}
+            <li><a href="/profiles/{{ r.member.member_id }}">{{ r.member.name }}</a>, guests: {{ r.guests }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

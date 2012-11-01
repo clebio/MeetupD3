@@ -7,6 +7,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^profiles/(\d+)/$', 'app1.views.profiles'),
+    url(r'^events/(\d+)/$', 'app1.views.events'),
+    url(r'^rsvps/(.+)/$', 'app1.views.rsvps'),
     url(r'^members/(\d+)/$', 'app1.views.members'),
     url(r'^$', 'app1.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),

@@ -4,7 +4,7 @@
     <h2>Profiles</h2>
     <ul>
         {% for p in profiles %}
-            <li><a href="{{ p.photo.thumb_link }}">{{ p.name }}</a>: {{ p.bio }}</li>
+            <li><a href="{{ p.profile_url }}">{{ p.name }}</a>: {{ p.bio }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

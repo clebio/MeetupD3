@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Events</h2>
+    <ul>
+        {% for ev in events %}
+            <li><a href="/rsvps/{{ ev.id }}">{{ ev.name }}</a>: <div id="description">{{ ev.description|striptags }}</div></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

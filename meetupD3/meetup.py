@@ -32,6 +32,15 @@ def getEventAttendees(eventId):
     people = _get_data('rsvps', _params)
     return people
 
+def getEvents(group_id):
+    _params['group_id'] = group_id
+    return _get_data('2/events', _params)
+
+def getRsvps(event_id):
+    _params['event_id'] = event_id
+    population = _get_data('2/rsvps', _params)
+    return [p for p in population if p['response'] == 'yes']
+
 def getMembers(group_id):
     _params['group_id'] = group_id
     people = _get_data('2/members', _params)
@@ -40,8 +49,7 @@ def getMembers(group_id):
 def getProfiles(member_id):
     _params['member_id'] = member_id
 #    _params['after'] = '3m'
-    result = _get_data('2/profiles', _params)
-    return result
+    return _get_data('2/profiles', _params)
 
 def getTopic(topicName):
     _params['name'] = topicName
