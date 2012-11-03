@@ -1,14 +1,23 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
-from django.shortcuts import render_to_response
+from django.shortcuts import render, render_to_response
+from django.core.urlresolvers import reverse
 from app1.models import Member
 from meetupD3 import meetup
-import datetime
+from django import forms
+
 
 def home(request):
-    now = datetime.datetime.now()
-    html = "<p>The time now is %s.<p>" % now
-    return render_to_response('base.html', {'title': 'Homepage', 'content': html})
+    class TopicsForm(forms.Form):
+        topicList = forms.CharField(label='topic(s)')
+    
+    if request.method == 'POST':
+        form = TopicsForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('groups/'+form.cleaned_data['topicList'])
+    else:
+        form = TopicsForm()
+    return render(request, 'app1/home.html', {'form': form, 'title': 'Search for groups' })
 
 def profiles(request, member_id):
     pros = meetup.getProfiles(member_id)
