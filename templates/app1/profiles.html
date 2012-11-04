@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-
 {% block content %}
     <h2>Profiles</h2>
     <ul>
         {% for p in profiles %}
-            <li><a href="{{ p.profile_url }}">{{ p.name }}</a>: {{ p.bio }}</li>
+            <li><a href="/groups/{{ p.group.id }}">{{ p.group.name }}</a>: {{ p.bio }}</li>
+	{% empty %}
+	    <p>No profiles found!</p>
         {% endfor %}
     </ul>
 {% endblock %}

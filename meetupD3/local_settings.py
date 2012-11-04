@@ -19,4 +19,6 @@ TEMPLATE_DIRS = (
     '/home/caleb/dev/meetupD3/templates',
 )
 
+PYTHONDONTWRITEBYTECODE=True
+
 #from settings_cache load *

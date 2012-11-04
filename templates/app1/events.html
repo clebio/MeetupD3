@@ -5,6 +5,8 @@
     <ul>
         {% for ev in events %}
             <li><a href="/rsvps/{{ ev.id }}">{{ ev.name }}</a>: <div id="description">{{ ev.description|striptags }}</div></li>
+	{% empty %}
+	    <p>No events found!</p>
         {% endfor %}
     </ul>
 {% endblock %}

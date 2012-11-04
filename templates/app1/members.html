@@ -5,6 +5,8 @@
     <ul>
         {% for mem in members %}
             <li><a href="/profiles/{{ mem.id }}">{{ mem.name }}</a>: {{ mem.bio }}</li>
+	{% empty %}
+	    <p>No members found!</p>
         {% endfor %}
     </ul>
 {% endblock %}

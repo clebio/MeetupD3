@@ -15,13 +15,15 @@ def _get_data(target, _params):
     url = _endpoint + target + '?' + urllib.urlencode(_params) + "&offset=%s"    
     data = []
     offset= 0
-    while True:
+    results = {'stub': 'nil'}
+    while len(results):
         response = urllib.urlopen(url%offset)
         s = unicode(response.read(), errors="ignore")
-        results = json.loads(s)['results']
-        if len(results) == 0:
-            print "no more results returned"
-            break
+        results = json.loads(s)
+        if results.has_key('results'):
+            results = results['results']
+        else:
+            return results
         data.extend(results)
         offset += 1
         print url%offset

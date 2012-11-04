@@ -5,6 +5,8 @@
     <ul>
         {% for r in rsvps %}
             <li><a href="/profiles/{{ r.member.member_id }}">{{ r.member.name }}</a>, guests: {{ r.guests }}</li>
+	{% empty %}
+	    <p>No RSVPs found!</p>
         {% endfor %}
     </ul>
 {% endblock %}
