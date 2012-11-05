@@ -1,0 +1,4 @@
+curl -I 'http://api.meetup.com/members/?relation=self&key={{ apiKet.txt }}'
+# use the value of X-RateLimit-Reset in the next command:
+python
+>>>> import time; time.gmtime(X-RateLimit-Reset)

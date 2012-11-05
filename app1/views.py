@@ -14,7 +14,7 @@ def home(request):
     if request.method == 'POST':
         form = TopicsForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('groups/'+ escape(form.cleaned_data['topicList']) )
+            return HttpResponseRedirect('topics/'+ escape(form.cleaned_data['topicList']) )
     else:
         form = TopicsForm()
     return render(request, 'app1/home.html', {'form': form, 'title': 'Search for groups' })
@@ -35,6 +35,10 @@ def rsvps(request, event_id):
     rsvps = meetup.getRsvps(event_id)
     return render_to_response('app1/rsvps.html', {'rsvps': rsvps, 'title': 'RSVPs for event ' + event_id})
 
-def groups(request, search_terms):
-    groups = meetup.getGroups(search_terms)
-    return render_to_response('app1/groups.html', {'groups': groups, 'title': 'Groups related to the term ' + search_terms}) 
+def groups(request, group):
+    groups = meetup.getGroups(group)
+    return render_to_response('app1/groups.html', {'groups': groups, 'title': 'Groups related to ' + group}) 
+
+def topics(request, terms):
+    groups = meetup.getGroupsByTopics(terms)
+    return render_to_response('app1/groups.html', {'groups': groups, 'title': 'Groups related to ' + terms}) 
