@@ -35,7 +35,7 @@ def getEventAttendees(eventId):
     return  _get_data('rsvps', {'event_id': eventId })
 
 def getEvents(group_id):
-    return _get_data('2/events', {'group_id': group_id })
+    return _get_data('2/events', {'group_id': group_id, 'status': 'past', 'desc': 'true', })
 
 def getRsvps(event_id):
     population = _get_data('2/rsvps', {'event_id': event_id })
