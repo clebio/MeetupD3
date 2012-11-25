@@ -13,10 +13,10 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- JavaScript at the bottom for fast page loading -->
-  <link rel="stylesheet" href="{% static "base.css" %}" />
-  <link rel="stylesheet" href="{% static "skeleton.css" %}" />
-  <link rel="stylesheet" href="{% static "layout.css" %}" />
-  <link rel="stylesheet" href="{% static "color.css" %}" />
+  <link rel="stylesheet" href="{% static "css/base.css" %}" />
+  <link rel="stylesheet" href="{% static "css/skeleton.css" %}" />
+  <link rel="stylesheet" href="{% static "css/layout.css" %}" />
+  <link rel="stylesheet" href="{% static "css/color.css" %}" />
 </head>
 <body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
@@ -47,5 +47,7 @@
     {% endblock %}
     </footer>
   </div>
+  <script src="{% static "js/d3.v2.js" %}"></script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>
