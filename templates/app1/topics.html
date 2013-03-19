@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Groups</h2>
+    <h2>Groups for topic</h2>
     <ul>
-        {% for g in groups %}
+        {% for g in topics %}
             <li><a href="/events/{{ g.id }}">{{ g.name }}</a>: {{ g.description|striptags }}</li>
 	{% empty %}
 	    <p>No groups found!</p>

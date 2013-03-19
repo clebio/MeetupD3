@@ -34,11 +34,21 @@ def _decode_dict(data):
         rv[key] = value
     return rv
 
-def _get_data(target, params, format='None'):
+targets = {
+		'attendees': { 'target': 'rsvps', 'arg': 'event_id'},
+		'events': { 'target': '2/events', 'arg': 'group_id', 'status': 'past', 'desc': 'true' },
+		'rsvps': {'target': '2/rsvps', 'arg': 'event_id'},
+		'members': {'target': '2/members', 'arg': 'group_id'},
+		'profiles': {'target': '2/profiles', 'arg': 'member_id'},
+		'groups': {'target': '2/groups', 'arg': 'group_id'},
+		'topics': {'target': '2/groups', 'arg': 'topic'}
+	}
+
+def get_data(dest, arg_id, format='None'):
     _params = {}
     _params['key'] = _apiKey
-    _params.update(params)
-    url = _endpoint + target + '?' + urllib.urlencode(_params) + "&offset=%s"    
+    _params[targets[dest]['arg']] = arg_id
+    url = _endpoint + targets[dest]['target'] + '?' + urllib.urlencode(_params) + "&offset=%s"    
     data = []
     offset= 0
     while True:
@@ -60,28 +70,4 @@ def _get_data(target, params, format='None'):
         if format == 'json':
             data = json.dumps(data)
     return data
-
-# Some of the API endpoints have the '2/' prefix, while other don't. Thus, different calls.
-def getEventAttendees(eventId):
-    return  _get_data('rsvps', {'event_id': eventId })
-
-def getEvents(group_id):
-    events =  _get_data('2/events', {'group_id': group_id, 'status': 'past', 'desc': 'true', })
-    return events
-
-def getRsvps(event_id):
-    population = _get_data('2/rsvps', {'event_id': event_id })
-    return [p for p in population if p['response'] == 'yes']
-
-def getMembers(group_id):
-    return _get_data('2/members', {'group_id': group_id })
-
-def getProfiles(member_id):
-#    _params['after'] = '3m'
-    return _get_data('2/profiles', {'member_id': member_id })
-
-def getGroups(group_id):
-    return _get_data('2/groups', {'group_id': group_id })
     
-def getGroupsByTopics(topic):
-    return _get_data('2/groups', {'topic': topic })
