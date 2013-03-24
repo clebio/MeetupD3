@@ -1,0 +1,23 @@
+/*
+  http://kuler.adobe.com/ > 'Ben et Lulu'
+ base grey: 424A4F
+ lower: 704C44
+ middle: AD5326
+ higher: D66F15
+ bright orange: FA9C20
+*/
+
+body {
+  background-color: #FA9C20;
+}
+
+header,footer, header h1 {
+  background-color: #424A4F;
+  color: #FA9C20;
+}
+
+#main {
+  color: #AD5326;
+}
+
+h1,h2,h3,h4,h5,h6,p,ul,li { color: #704C44; }

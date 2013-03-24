@@ -6,4 +6,4 @@ venv
 .#*
 apiKey.txt
 admin/*
-static/
+/static/
