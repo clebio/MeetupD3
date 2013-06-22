@@ -21,5 +21,12 @@ def home(request):
 
 def genericView(request, target, member_id):
     pros = meetup.get_data(target, member_id)
-    return render_to_response('app1/' + target + '.html', {target: pros, })
+    return render(request, 'app1/' + target + '.html', {target: pros, })
+
+def d3View(request, t, i):
+    return render(request, 'app1/d3.html', {'target': t, 'item': i})
+
+def serveJson(request, target, item_id):
+    pros = meetup.get_data(target, item_id, format='json')
+    return HttpResponse(pros, content_type="application/json");
 

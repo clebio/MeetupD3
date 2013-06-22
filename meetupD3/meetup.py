@@ -35,16 +35,16 @@ def _decode_dict(data):
     return rv
 
 targets = {
-		'attendees': { 'target': 'rsvps', 'arg': 'event_id'},
-		'events': { 'target': '2/events', 'arg': 'group_id', 'status': 'past', 'desc': 'true' },
-		'rsvps': {'target': '2/rsvps', 'arg': 'event_id'},
-		'members': {'target': '2/members', 'arg': 'group_id'},
-		'profiles': {'target': '2/profiles', 'arg': 'member_id'},
-		'groups': {'target': '2/groups', 'arg': 'group_id'},
-		'topics': {'target': '2/groups', 'arg': 'topic'}
+		'attendees': { 'target': 'rsvps', 'arg': 'event_id' },
+		'events': { 'target': '2/events', 'arg': 'group_id', 'status': 'past', 'desc': 'true', 'value': 'yes_rsvp_count'},
+		'rsvps': {'target': '2/rsvps', 'arg': 'event_id', 'value': 'mtime' },
+		'members': {'target': '2/members', 'arg': 'group_id', 'value': 'joined'},
+		'profiles': {'target': '2/profiles', 'arg': 'member_id', 'value': 'visited' },
+		'groups': {'target': '2/groups', 'arg': 'group_id', 'value': 'members'},
+		'topics': {'target': '2/groups', 'arg': 'topic', 'value': 'members' }
 	}
 
-def get_data(dest, arg_id, format='None'):
+def get_data(dest, arg_id, format='none'):
     _params = {}
     _params['key'] = _apiKey
     _params[targets[dest]['arg']] = arg_id
@@ -54,20 +54,23 @@ def get_data(dest, arg_id, format='None'):
     while True:
         print url%offset
         response = urllib.urlopen(url%offset)
+        if format == 'json':
+            return response
         s = unicode(response.read(), errors="ignore")
         try:
             hooker = (lambda dict: dict)
             if format == 'json':
                 hooker = _decode_dict
-            results = json.loads(s, object_hook=hooker)['results']
+            results = json.loads(s)['results']
         except Exception:
             print("no 'results' key in response")
             results = []
         if len(results) == 0:
             break
-        data.extend(results)
         offset += 1
         if format == 'json':
-            data = json.dumps(data)
+            data = json.dumps(results)
+        else:
+            data.extend(results)
     return data
     
