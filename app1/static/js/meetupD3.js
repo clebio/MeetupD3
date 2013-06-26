@@ -122,7 +122,7 @@ me3 = function() {
 	    .selectAll("g")
 	    .data(d.children)
 	    .enter().append("svg:g")
-	    .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+	    .style("cursor", function(d) { return !d.value ? null : "pointer"; })
 	    .on("click", this.down);
 
 	bar.append("svg:text")

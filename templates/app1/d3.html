@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{% static "css/d3.css" %}" />
   <script src="{% static "js/meetupD3.js" %}"></script>
   <script type='text/javascript'>
-    var m = [30, 40, 20, 120], // top right bottom left
+    var m = [30, 80, 20, 160], // top right bottom left
     w = 960 - m[1] - m[3], // width
     h = 500 - m[0] - m[2], // height
     x = d3.scale.linear()
@@ -20,7 +20,7 @@
     delay = 25;
 
     var hierarchy = d3.layout.partition()
-    .value(function(d) { return d.yes_rsvp_count; })
+    .value(function(d) { return d.{{ value_key }}; })
     .children(function(d) { return d.results; });
 
     var xAxis = d3.svg.axis()
