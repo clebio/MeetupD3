@@ -24,7 +24,7 @@ me3 = function() {
 	enter.select("rect").style("fill", z(true));
 
 	// Update the x-scale domain.
-	x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+	x.domain([d3.min(d.children, function(d) {return d.d3_value; }), d3.max(d.children, function(d) { return d.d3_value; })]).nice();
 
 	// Update the x-axis.
 	svg.selectAll(".x.axis").transition().duration(duration).call(xAxis);
@@ -40,7 +40,7 @@ me3 = function() {
 
 	// Transition entering rects to the new x-scale.
 	enterTransition.select("rect")
-	    .attr("width", function(d) { return x(d.value); })
+	    .attr("width", function(d) { return x(d.d3_value); })
 	    .style("fill", function(d) { return z(!!d.children); });
 
 	// Transition exiting bars to fade out.
@@ -50,7 +50,7 @@ me3 = function() {
 	    .remove();
 
 	// Transition exiting bars to the new x-scale.
-	exitTransition.selectAll("rect").attr("width", function(d) { return x(d.value); });
+	exitTransition.selectAll("rect").attr("width", function(d) { return x(d.d3_value); });
 
 	// Rebind the current node to the background.
 	svg.select(".background").data([d]).transition().duration(end); d.index = i;
@@ -76,7 +76,7 @@ me3 = function() {
 	    .style("fill-opacity", 1e-6);
 
 	// Update the x-scale domain.
-	x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+	x.domain([0, d3.max(d.parent.children, function(d) { return d.d3_value; })]).nice();
 
 	// Update the x-axis.
 	svg.selectAll(".x.axis").transition().duration(duration).call(xAxis);
@@ -89,7 +89,7 @@ me3 = function() {
 	// Transition entering rects to the new x-scale.
 	// When the entering parent rect is done, make it visible!
 	enterTransition.select("rect")
-	    .attr("width", function(d) { return x(d.value); })
+	    .attr("width", function(d) { return x(d.d3_value); })
 	    .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
 
 	// Transition exiting bars to the parent's position.
@@ -104,7 +104,7 @@ me3 = function() {
 
 	// Transition exiting rects to the new scale and fade to parent color.
 	exitTransition.select("rect")
-	    .attr("width", function(d) { return x(d.value); })
+	    .attr("width", function(d) { return x(d.d3_value); })
 	    .style("fill", z(true));
 
 	// Remove exiting nodes when the last child has finished transitioning.
@@ -122,7 +122,7 @@ me3 = function() {
 	    .selectAll("g")
 	    .data(d.children)
 	    .enter().append("svg:g")
-	    .style("cursor", function(d) { return !d.value ? null : "pointer"; })
+	    .style("cursor", function(d) { return !d.d3_value ? null : "pointer"; })
 	    .on("click", this.down);
 
 	bar.append("svg:text")
@@ -130,10 +130,10 @@ me3 = function() {
 	    .attr("y", y / 2)
 	    .attr("dy", ".35em")
 	    .attr("text-anchor", "end")
-	    .text(function(d) { return d.name; });
+	    .text(function(d) { return d.d3_name; });
 
 	bar.append("svg:rect")
-	    .attr("width", function(d) { return x(d.value); })
+	    .attr("width", function(d) { return x(d.d3_value); })
 	    .attr("height", y);
 
 	return bar;
@@ -144,7 +144,7 @@ me3 = function() {
 	var x0 = 0;
 	return function(d) {
 	    var tx = "translate(" + x0 + "," + y * i * 1.2 + ")";
-	    x0 += x(d.value);
+	    x0 += x(d.d3_value);
 	    return tx;
 	};
     }

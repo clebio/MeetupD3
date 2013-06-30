@@ -21,7 +21,8 @@
 
     var hierarchy = d3.layout.partition()
     .value(function(d) { return d.{{ value_key }}; })
-    .children(function(d) { return d.results; });
+    .children(function(d) { return d.results; })
+    .sort(function(a,b) { return b.d3_value - a.d3_value });
 
     var xAxis = d3.svg.axis()
     .scale(x)
