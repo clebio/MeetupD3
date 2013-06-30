@@ -34,7 +34,6 @@ def _decode_dict(data):
     rv = {}
     for key, value in data.iteritems():
         if isinstance(key, unicode):
-            print key
             key = key.encode('utf-8')
         if isinstance(value, unicode):
             value = value.encode('utf-8')
@@ -63,7 +62,7 @@ def get_data(dest, arg_id, format='none'):
             hooker = (lambda dict: dict)
             if format == 'json':
                 hooker = _decode_dict
-            results = json.loads(s, object_hook=hooker)['results']
+            results = json.loads(s)['results'] # , object_hook=hooker
         except Exception:
             print("no 'results' key in response")
             results = []
