@@ -21,10 +21,10 @@ def home(request):
 
 def genericView(request, target, member_id):
     pros = meetup.get_data(target, member_id)
-    return render(request, 'app1/' + target + '.html', {target: pros, })
+    return render(request, 'app1/' + target + '.html', {target: pros, 'target': target, 'item': member_id, 'title': 'Text listing of results' })
 
 def d3View(request, t, i):
-    return render(request, 'app1/d3.html', {'target': t, 'item': i, 'value_key': meetup.get_value_key(t), })
+    return render(request, 'app1/d3.html', {'target': t, 'item': i, 'value_key': meetup.get_value_key(t), 'title': 'D3 visualization of results' })
 
 def serveJson(request, target, item_id):
     pros = meetup.get_data(target, item_id, format='json')

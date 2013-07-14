@@ -16,7 +16,15 @@
 
 /* #Site Styles
 ================================================== */
+header h1 {
+    display: inline;
+}
 
+header #switcher {
+    display: block;
+    float: right;
+    vertical-align: middle;
+}
 /* #Page Styles
 ================================================== */
 

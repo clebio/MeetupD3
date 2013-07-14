@@ -1,5 +1,10 @@
 {% extends "base.html" %}
+{% load url from future %}
 {% load staticfiles %}
+
+{% block switch %}
+  <a href="{% url 'generic_view' target item %}">Text view</a>
+{% endblock %}
 
 {% block content %}
   <div id="d3"></div>

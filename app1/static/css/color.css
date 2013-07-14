@@ -16,6 +16,10 @@ header,footer, header h1 {
   color: #FA9C20;
 }
 
+header #switcher {
+    background-color: #AD5326;
+}
+
 #main {
   color: #AD5326;
 }
