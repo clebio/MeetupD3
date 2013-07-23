@@ -1,4 +1,4 @@
-# Visualizations of Meetup.com via D3
+# Visualizations of Meetup.com via D3 
 
 This Django application is an exercise in using [D3 layouts][1]. We leverage the [Meetup.com API][2] to gather information about events and members and then display them in possibly intresting or useful ways.
 
