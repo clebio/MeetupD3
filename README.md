@@ -7,6 +7,10 @@ This is a full re-write of the initial investigation begun in my [d3talk repo][3
 ##Implementation
 Your Meetup API key goes in `apiKey.txt` and is excluded from versioning via `.gitignore`.
 
+##Installation
+Clone the git repo. Use Virtualenv, and run `pip install -r requirements.txt`. Note that psycopg2 requires libpq-dev on the host machine (http://stackoverflow.com/a/12037133).
+
+
 [1]: https://github.com/mbostock/d3/wiki/Layouts
 [2]: http://www.meetup.com/meetup_api/
 [3]: https://github.com/clebio/d3talk
